@@ -13,17 +13,15 @@ import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
     @Inject
-    Car car;
+    Car car1,car2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent component= DaggerCarComponent.builder()
-                .horsePower(100)
-                .engineCapacity(1300)
-                .build();
+        CarComponent component=((ExampleApp) getApplication()).getAppComponent();
         component.inject(this);
-        car.drive();
+        car1.drive();
+        car2.drive();
     }
 }
